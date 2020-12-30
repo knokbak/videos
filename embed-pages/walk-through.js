@@ -23,7 +23,7 @@ exports.run = async(client, msg, args) => {
     ];
     
     // We'll now create a place to store the current page number...
-    let current = 1;
+    let current = 0;
     
     // ...and will now post a loading message which we will edit later.
     let m = await msg.channel.send('Loading pages...');
