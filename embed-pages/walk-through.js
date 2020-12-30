@@ -68,9 +68,9 @@ exports.run = async(client, msg, args) => {
             await m.react('⬅️');
             
             // We'll quickly create a reaction collector filter so we only collect the right events...
-            let filter = (r, u) => r.emoji.name == '⬅️' && u.id == message.author.id;
+            let filter = (r, u) => r.emoji.name == '⬅️' && u.id == msg.author.id;
             
-            // ...and then set the variable we made earlier. We'll make sure our collector times out after 60000ms (60 seconds).
+            // ...and then set the variable we made earlier. We'll make sure our collector times out after 60,000ms (60 seconds).
             left = m.createReactionCollector(filter, { time: 60000 });
             
             // We'll now handle the add reaction event.
@@ -89,10 +89,10 @@ exports.run = async(client, msg, args) => {
         if (needed[1]) {
             await m.react('➡️');
             
-            let filter = (r, u) => r.emoji.name == '➡️' && u.id == message.author.id;
-            left = m.createReactionCollector(filter, { time: 60000 });
+            let filter = (r, u) => r.emoji.name == '➡️' && u.id == msg.author.id;
+            right = m.createReactionCollector(filter, { time: 60000 });
             
-            left.on('collect', r => {
+            right.on('collect', r => {
                 if (left) left.stop();
                 right.stop();
                 
